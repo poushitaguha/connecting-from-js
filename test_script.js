@@ -1,7 +1,7 @@
 const pg = require("pg");
 const settings = require("./settings"); // settings.json
 
-const person = process.argv.slice(2)[0];
+const person = process.argv[2];
 
 const client = new pg.Client({
   user     : settings.user,
@@ -33,7 +33,6 @@ client.connect((err) => {
         birthdate = birthdate.toISOString().slice(0,10)
         console.log("- " + count + ": ", firstName, lastName + ", born " + "'" + birthdate + "'");
     });
-
 
     // console.log(result.rows[0].number); //output: 1
     client.end();
