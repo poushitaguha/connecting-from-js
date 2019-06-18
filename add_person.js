@@ -16,7 +16,9 @@ const dateOfBirth = process.argv[4];
 
 return knex.insert( [{first_name: firstName, last_name: lastName, birthdate: dateOfBirth}] )
   .into('famous_people')
-  .then(function(){
+  .returning('*')
+  .then(function(rows) {
+    console.log(rows)
     knex.destroy();
   })
   .catch(function(error) {
